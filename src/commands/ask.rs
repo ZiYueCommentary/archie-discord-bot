@@ -43,7 +43,7 @@ impl poise::ChoiceParameter for Question {
         }
     }
 
-    fn from_name(name: &str) -> Option<Self> {
+    fn from_name(_name: &str) -> Option<Self> {
         None
     }
 
