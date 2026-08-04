@@ -36,6 +36,7 @@ dependencies = [
 name = "archie-discord-bot"
 version = "0.1.0"
 dependencies = [
+ "formatx",
  "poise",
  "serde_json",
  "serenity",
@@ -574,6 +575,12 @@ checksum = "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
 dependencies = [
  "percent-encoding",
 ]
+
+[[package]]
+name = "formatx"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c59d4b42303d6fdd5f2e058d7a420103752ec6c4bf260c08abd86a14ea5223a3"
 
 [[package]]
 name = "futures"

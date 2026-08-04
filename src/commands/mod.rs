@@ -1,7 +1,8 @@
-pub(crate) mod pacman;
 pub(crate) mod ask;
+pub(crate) mod pacman;
 
-use crate::{Context, Error, userdata};
+use crate::{Context, Error, i18n, userdata};
+use formatx::formatx;
 use poise::CreateReply;
 use serenity::all::{Colour, CreateAttachment, CreateEmbed};
 use std::time::{SystemTime, UNIX_EPOCH};
@@ -91,5 +92,18 @@ Locale: {}.UTF-8
         ),
     )
     .await?;
+    Ok(())
+}
+
+/// Information about this bot
+#[poise::command(slash_command)]
+pub async fn about(ctx: Context<'_>) -> Result<(), Error> {
+    let result = formatx!(
+        i18n::get(ctx.locale().unwrap(), "about"),
+        version = env!("CARGO_PKG_VERSION"),
+        github = "https://github.com/ZiYueCommentary/archie-discord-bot",
+        weblate = "https://weblate.ziyuesinicization.site/engage/archie-discord-bot/"
+    )?;
+    ctx.reply(result).await?;
     Ok(())
 }

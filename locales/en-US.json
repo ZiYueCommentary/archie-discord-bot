@@ -1,4 +1,5 @@
 {
+    "about": "**Archie Discord Bot** is a Discord bot that full of Arch stereotypes, being licensed under GNU Affero General Public License 3.0 or later.\n⭐ Please star the project if you like this.\n- Version: {version}\n- GitHub: {github}\n- Translation: {weblate}",
     "pacman.sync_packages": "Synchronizing package databases...",
     "pacman.full_upgrade": "Starting full system upgrade...",
     "ask.are_you_femboy": "Are you femboy?",

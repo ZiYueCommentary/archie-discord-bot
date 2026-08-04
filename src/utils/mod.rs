@@ -8,7 +8,7 @@ pub trait ReplyHandleExt {
 }
 
 pub trait ContextExt {
-    async fn reply_locale(&self, key: &'static str) -> Result<ReplyHandle, Error>;
+    async fn reply_locale(&self, key: &'static str) -> Result<ReplyHandle<'_>, Error>;
 }
 
 impl ReplyHandleExt for ReplyHandle<'_> {
@@ -26,7 +26,7 @@ impl ReplyHandleExt for ReplyHandle<'_> {
 }
 
 impl ContextExt for Context<'_> {
-    async fn reply_locale(&self, key: &'static str) -> Result<ReplyHandle, Error> {
+    async fn reply_locale(&self, key: &'static str) -> Result<ReplyHandle<'_>, Error> {
         self.reply(i18n::get(self.locale().unwrap(), key)).await
     }
 }

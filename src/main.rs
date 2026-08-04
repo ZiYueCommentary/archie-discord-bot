@@ -14,7 +14,8 @@ struct Data {}
 type Error = Box<dyn std::error::Error + Send + Sync>;
 type Context<'a> = poise::Context<'a, Data, Error>;
 
-fn init_logger() {
+#[tokio::main]
+async fn main() {
     let appender = tracing_appender::rolling::daily("logs", "archie");
     let (non_blocking_writer, _guard) = tracing_appender::non_blocking(appender);
 
@@ -37,16 +38,6 @@ fn init_logger() {
         .with(stdout_layer)
         .with(file_layer)
         .init();
-}
-
-#[tokio::main]
-async fn main() {
-    println!("Archie Discord Bot  Copyright (C) 2026  ZiYueCommentary
-This program comes with ABSOLUTELY NO WARRANTY.
-This is free software, and you are welcome to redistribute it
-under certain conditions.");
-
-    init_logger();
     i18n::init();
 
     match database::init().await {
@@ -59,7 +50,7 @@ under certain conditions.");
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![commands::fastfetch(), commands::nyaofetch(), commands::pacman::pacman(), commands::ask::ask()], // 注册命令
+            commands: vec![commands::fastfetch(), commands::nyaofetch(), commands::pacman::pacman(), commands::ask::ask(), commands::about()],
             ..poise::FrameworkOptions::default()
         })
         .setup(|ctx, _ready, framework| {
